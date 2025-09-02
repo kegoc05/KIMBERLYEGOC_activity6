@@ -4,73 +4,85 @@ class Program
 {
     static void Main()
     {
-        string currentMenu = "main";
-        bool running = true;
-
-        while (running)
+        string menu = "home";
+        
+        while (true)
         {
             Console.Clear();
-
-            switch (currentMenu)
+            
+            if (menu == "home")
             {
-                case "main":
-                    Console.WriteLine("=== MAIN MENU ===");
-                    Console.WriteLine("A. File");
-                    Console.WriteLine("B. Edit");
-                    Console.WriteLine("C. View");
-                    Console.WriteLine("X. Exit");
-                    break;
-
-                case "file":
-                    Console.WriteLine("=== FILE MENU ===");
-                    Console.WriteLine("A. New");
-                    Console.WriteLine("B. Open");
-                    Console.WriteLine("C. Save");
-                    Console.WriteLine("B. Back");
-                    break;
-
-                case "edit":
-                    Console.WriteLine("=== EDIT MENU ===");
-                    Console.WriteLine("A. Cut");
-                    Console.WriteLine("B. Copy");
-                    Console.WriteLine("C. Paste");
-                    Console.WriteLine("B. Back");
-                    break;
-
-                case "view":
-                    Console.WriteLine("=== VIEW MENU ===");
-                    Console.WriteLine("A. Zoom In");
-                    Console.WriteLine("B. Zoom Out");
-                    Console.WriteLine("C. Fullscreen");
-                    Console.WriteLine("B. Back");
-                    break;
+                Console.WriteLine("1. Database Models");
+                Console.WriteLine("2. Web Frontend");
+                Console.WriteLine("0. Exit");
+                
+                string choice = Console.ReadLine();
+                if (choice == "1") menu = "database";
+                else if (choice == "2") menu = "web";
+                else if (choice == "0") break;
             }
-
-            Console.Write("\nEnter your choice: ");
-            string input = Console.ReadLine().ToLower();
-
-            if (input == "x")
+            else if (menu == "database")
             {
-                running = false;
+                Console.WriteLine("1. Relational");
+                Console.WriteLine("2. Non-Relational");
+                Console.WriteLine("0. Back");
+                
+                string choice = Console.ReadLine();
+                if (choice == "1") menu = "relational";
+                else if (choice == "2") menu = "nonrel";
+                else if (choice == "0") menu = "home";
             }
-            else if (currentMenu == "main")
+            else if (menu == "relational")
             {
-                if (input == "a") currentMenu = "file";
-                else if (input == "b") currentMenu = "edit";
-                else if (input == "c") currentMenu = "view";
+                Console.WriteLine("1. SQL");
+                Console.WriteLine("2. ACID");
+                Console.WriteLine("0. Back");
+                
+                string choice = Console.ReadLine();
+                if (choice == "0") menu = "database";
+                else Console.ReadKey();
             }
-            else
+            else if (menu == "nonrel")
             {
-                // Back from submenu to main
-                if (input == "b") currentMenu = "main";
-                else
-                {
-                    Console.WriteLine("\nYou selected a submenu item. Press any key to go back...");
-                    Console.ReadKey();
-                }
+                Console.WriteLine("1. NoSQL");
+                Console.WriteLine("2. CAP");
+                Console.WriteLine("0. Back");
+                
+                string choice = Console.ReadLine();
+                if (choice == "0") menu = "database";
+                else Console.ReadKey();
+            }
+            else if (menu == "web")
+            {
+                Console.WriteLine("1. Markup");
+                Console.WriteLine("2. Styling");
+                Console.WriteLine("0. Back");
+                
+                string choice = Console.ReadLine();
+                if (choice == "1") menu = "markup";
+                else if (choice == "2") menu = "styling";
+                else if (choice == "0") menu = "home";
+            }
+            else if (menu == "markup")
+            {
+                Console.WriteLine("1. HTML");
+                Console.WriteLine("2. XML");
+                Console.WriteLine("0. Back");
+                
+                string choice = Console.ReadLine();
+                if (choice == "0") menu = "web";
+                else Console.ReadKey();
+            }
+            else if (menu == "styling")
+            {
+                Console.WriteLine("1. CSS");
+                Console.WriteLine("2. Sass");
+                Console.WriteLine("0. Back");
+                
+                string choice = Console.ReadLine();
+                if (choice == "0") menu = "web";
+                else Console.ReadKey();
             }
         }
-
-        Console.WriteLine("\nProgram ended.");
     }
 }
